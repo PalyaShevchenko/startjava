@@ -49,7 +49,7 @@ public class IfElseStatementTheme {
         int num = -5;
         System.out.println("num = "+ num);
         if(num != 0) {
-            if(num / 2 == num % 2) {
+            if(num % 2 == 0) {
                 System.out.println("num - четное");
             } else {
                 System.out.println("num - нечетное");
