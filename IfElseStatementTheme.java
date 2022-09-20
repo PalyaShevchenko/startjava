@@ -103,7 +103,7 @@ public class IfElseStatementTheme {
         int percentFinalHistory = 59;
         int percentFinalProgramming = 91;
         int ratingHistory = 5;
-        if (percentFinalHistory <= 60) {
+        if(percentFinalHistory <= 60) {
             ratingHistory = 2;
         } else if((percentFinalHistory > 60) && (percentFinalHistory <= 73)) {
             ratingHistory = 3;
@@ -112,7 +112,7 @@ public class IfElseStatementTheme {
         }
         System.out.println(ratingHistory + " История");
         int ratingProgramming = 5;
-        if (percentFinalProgramming <= 60) {
+        if(percentFinalProgramming <= 60) {
             ratingProgramming = 2;
         } else if((percentFinalProgramming > 60) && (percentFinalProgramming <= 73)) {
             ratingProgramming = 3;
@@ -139,7 +139,7 @@ public class IfElseStatementTheme {
         int limitbanknote10 = 5;
         int banknote100 = sum / 100;
         int banknote10 = (sum - banknote100 *100) / 10;
-        if (banknote10 > limitbanknote10) {
+        if(banknote10 > limitbanknote10) {
             banknote10 = limitbanknote10;
         }
         int banknote1 = sum - banknote100 * 100 - banknote10 * 10;
