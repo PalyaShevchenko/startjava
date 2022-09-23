@@ -136,37 +136,37 @@ public class CyclesTheme {
         }
 
         System.out.println("\n9. Определение, является ли число счастливым\n");
-        num = 24655757;
+        num = 1932465359;
         copyNum = num;
-        int counterDigit = 0;
+        int counterDigits = 0;
         int multiplierDigit = 1;
-        while (copyNum > 0) {
-            counterDigit++;
+        while (copyNum != 0) {
+            counterDigits++;
             copyNum /=10;
         }
-        if (counterDigit >= 6) {
-            for (i = 1; i <= counterDigit - 3; i++) {
+        if ( counterDigits % 2 == 0) {
+            for (i = 1; i <= counterDigits / 2; i++) {
                 multiplierDigit *= 10;
             }
-            int digitsJunior = num % 1000;
-            int digitsSenior = num / multiplierDigit;
-            int sumDigitsJunior = 0;
-            int sumDigitsSenior = 0;
-            for (i = 1; i <= 3; i++) {
-                sumDigitsJunior += (digitsJunior % 10);
-                digitsJunior /= 10;
-                sumDigitsSenior += (digitsSenior % 10);
-                   digitsSenior /= 10;
+            int digitsRight = num % multiplierDigit;
+            int digitsLeft = num / multiplierDigit;
+            int sumDigitsRight = 0;
+            int sumDigitsLeft = 0;
+            while (digitsRight != 0) {
+                sumDigitsRight += (digitsRight % 10);
+                digitsRight /= 10;
+                sumDigitsLeft += (digitsLeft % 10);
+                digitsLeft /= 10;
             }
-            System.out.println("Сумма цифр " + num % 1000 + " = " + sumDigitsJunior);
-            System.out.println("Сумма цифр " + num / multiplierDigit + " = " + sumDigitsSenior);
-            if (sumDigitsJunior == sumDigitsSenior) {
+            System.out.println("Сумма цифр " + num % multiplierDigit + " = " + sumDigitsRight);
+            System.out.println("Сумма цифр " + num / multiplierDigit + " = " + sumDigitsLeft);
+            if (sumDigitsRight == sumDigitsLeft) {
                 System.out.println("число является счастливым");
             } else {
                 System.out.println("число не является счастливым");
             }
         } else {
-            System.out.println("число не удовлетворяет заданию");
+            System.out.println("число неудовлетворяет требованию задания");
         }
 
 
