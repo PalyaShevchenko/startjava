@@ -20,14 +20,11 @@ public class CyclesTheme {
         int num1 = 10;
         int num2 = 5;
         int num3 = -1;
-        int max; 
-        int min;
+        int max = num1; 
+        int min = num2;
         if (num1 < num2) {
             max = num2;
             min = num1;
-        } else {
-            max = num1;
-            min = num2;
         }
         if (num3 < min) {
             min = num3;
@@ -143,7 +140,7 @@ public class CyclesTheme {
         copyNum = num;
         int divider = 1;
         while (copyNum != 0) {
-            copyNum /=100;
+            copyNum /= 100;
             divider *= 10;
         }
         int digitsRight = num % divider;
