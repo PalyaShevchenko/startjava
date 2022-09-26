@@ -1,25 +1,25 @@
 public class Сalculator {
     public static void main(String[] args) {
-        int a = 5;
-        int b = 5;
+        int num1 = 5;
+        int num2 = 5;
         long result;
         char sign = '^';
         if (sign == '+') {
-            result = a + b;
+            result = num1 + num2;
         } else if (sign == '-') {
-            result = a - b;
+            result = num1 - num2;
         } else if (sign == '*') {
-            result = a * b;
+            result = num1 * num2;
         } else if (sign == '/') {
-            result = a / b;
+            result = num1 / num2;
         } else if (sign == '^') {
-            result = a;
-            for (int i = 2; i <= b; i++) {
+            result = num1;
+            for (int i = 2; i <= num2; i++) {
                 result *= result;
             }
         } else {
-            result = a % b;
+            result = num1 % num2;
         }
-        System.out.println(a + " " + sign + " " + b + " = " + result);
+        System.out.println(num1 + " " + sign + " " + num2 + " = " + result);
     }
 }
