@@ -1,12 +1,12 @@
 public class Wolf {
 
-    String gender;
-    String nick;
-    double weight;
-    int age;
-    String color;
+    privet String gender;
+    privet String nick;
+    privet double weight;
+    privet int age;
+    privet String color;
 
-     void go() {
+    void go() {
         System.out.println("Идет");
     }
 
