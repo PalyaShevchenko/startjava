@@ -1,7 +1,7 @@
 public class Person {
 
     String gender = "men";
-    String name = "Jeeves"
+    String name = "Jeeves";
     int age = 37;
     double height = 1.90;
     double weight = 82.5;
