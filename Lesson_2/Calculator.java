@@ -2,7 +2,6 @@ public class Calculator {
 
     private int num1;
     private int num2;
-    private long result;
     private String sign;
 
     public void setNum1(int num1) {
@@ -10,14 +9,14 @@ public class Calculator {
     }
 
     public void setSign(String sign) {
-        this.sign =sign;
+        this.sign = sign;
     }
 
     public void setNum2(int num2) {
         this.num2 = num2;
     }
 
-    public long getCalc() {
+    public long сalc() {
         //return result;
         switch (sign) {
             case "+" :
@@ -29,16 +28,17 @@ public class Calculator {
             case "/" :
                 return  num1 / num2;
             case "^" :
+                long result;
                 result = num1;
                 for (int i = 2; i <= num2; i++) {
                     result *= result;
                 }
-                break;
+                return result;
             case "%" :
                 return num1 % num2;
             default:
                 System.out.println("неизвестный оператор");
         }
-        return result;
+        return 0;
     }
 }
