@@ -17,21 +17,17 @@ public class Calculator {
         this.num2 = num2;
     }
 
-    public long getResult() {
+    public long getCalc() {
         //return result;
         switch (sign) {
             case "+" :
-                result = num1 + num2;
-                break;
+                return num1 + num2;
             case "-" :
-                result = num1 - num2;
-                break;
+                return num1 - num2;
             case "*" :
-                result = num1 * num2;
-                break;
+                return num1 * num2;
             case "/" :
-                result = num1 / num2;
-                break;
+                return  num1 / num2;
             case "^" :
                 result = num1;
                 for (int i = 2; i <= num2; i++) {
@@ -39,8 +35,7 @@ public class Calculator {
                 }
                 break;
             case "%" :
-                result = num1 % num2;
-                break;
+                return num1 % num2;
             default:
                 System.out.println("неизвестный оператор");
         }

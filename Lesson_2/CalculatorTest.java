@@ -4,25 +4,22 @@ public class CalculatorTest {
 
     public static void main (String[] args) {
         Calculator calc = new Calculator();
-        Scanner scanner = new Scanner(System.in);
-        String userReply;
+        Scanner console = new Scanner(System.in);
+        String userAnswer;
         do {
             System.out.print("Введите первое число: ");
-            int num1 = scanner.nextInt();
-            calc.setNum1(num1);
+            calc.setNum1(console.nextInt());
             System.out.print("Введите знак математической операции: ");
-            scanner.nextLine();
-            String sign = scanner.nextLine();
-            calc.setSign(sign);
+            console.nextLine();
+            calc.setSign(console.nextLine());
             System.out.print("Введите второе число: ");
-            int num2 = scanner.nextInt();
-            calc.setNum2(num2);
-            System.out.print("результат " + calc.getResult());
+            calc.setNum2(console.nextInt());
+            System.out.print("результат " + calc.getCalc());
+            console.nextLine();
             do {
                 System.out.print("\n\nХотите продолжить вычисления? [yes/no]:");
-                scanner.nextLine();
-                userReply = scanner.nextLine();
-            } while ((!userReply.equalsIgnoreCase("yes")) && (!userReply.equalsIgnoreCase("no")));
-        } while (userReply.equalsIgnoreCase("yes"));
+                userAnswer = console.nextLine().toLowerCase();
+            } while (!userAnswer.equals("yes") && !userAnswer.equals("no"));
+        } while (userAnswer.equals("yes"));
     }
 }
