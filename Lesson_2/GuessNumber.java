@@ -10,7 +10,7 @@ public class GuessNumber {
 
     public void play() {
         Player activePlayer;
-        int secretNum = getSecretNum();
+        int secretNum = generateSecretNum();
         //System.out.println("" + secretNum);
         do {
             player1.setIsActive(!player1.getIsActive());
@@ -24,7 +24,7 @@ public class GuessNumber {
         } while (!compare(activePlayer.getNum(), secretNum));
     }
 
-    private int getSecretNum() {
+    private int generateSecretNum() {
         return (int) ((Math.random() +0.01) * 100 );
     }
 
