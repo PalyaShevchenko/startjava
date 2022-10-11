@@ -1,3 +1,5 @@
+package com.startjava.lesson_1.base;
+
 public class Сalculator {
     public static void main(String[] args) {
         int num1 = 5;
