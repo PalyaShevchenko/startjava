@@ -1,6 +1,7 @@
-package com.startjava.lesson_1.base;
+package com.startjava.lesson_1.fina;
 
-public class Сalculator {
+public class Calculator {
+
     public static void main(String[] args) {
         int num1 = 5;
         int num2 = 5;
