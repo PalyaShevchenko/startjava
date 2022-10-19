@@ -73,7 +73,7 @@ public class ArrayMain {
                         isNumRepeats = false;
                     }
                 }
-            }while (isNumRepeats);
+            } while (isNumRepeats);
         }
         for (int i = 1; i < length-1; i++) {
             boolean isChange = false;
@@ -90,6 +90,40 @@ public class ArrayMain {
             }
         }
         printArrayFormat(intArr, 10);
+
+        System.out.println("\n6. Сдвиг элементов массива");
+        String[] strArr = {"    ", "AA", "", "BBB", "CC", "D", "    ", "E", "FF", "G", ""};
+        length = strArr.length;
+        int counter = 0;
+        for (int i = 0; i < length; i++) {
+            if (strArr[i].isBlank()) {
+                counter++;
+            }
+        }
+        String[] strArrChange = new String[length - counter];
+        int destPos = 0;
+        int lengthCopy = 0;
+        int i = 0;
+        boolean isBlank = false;
+        while (i < length) {
+
+            if (!strArr[i].isBlank()) {
+                lengthCopy++;
+                isBlank = !strArr[i].isBlank();
+                if(i == length - 1) {
+                    System.arraycopy(strArr, i - lengthCopy + 1, strArrChange, destPos, lengthCopy);
+                }
+            }else if (isBlank) {
+                System.arraycopy(strArr, i - lengthCopy, strArrChange, destPos, lengthCopy);
+                destPos += lengthCopy;
+                lengthCopy = 0;
+                isBlank = strArr[i].isBlank();
+            }
+            i++;
+        }
+        printArrayStr(strArr);
+        System.out.println();
+        printArrayStr(strArrChange);
     }
 
     private static void printArray(int[] nums) {
@@ -120,6 +154,12 @@ public class ArrayMain {
             if (i != 0 && (i + 1) % numElementsLine == 0){
                 System.out.println();
             }
+        }
+    }
+
+    private static void printArrayStr(String[] strArr) {
+        for (String string : strArr) {
+            System.out.print(string + " ");
         }
     }
 }
