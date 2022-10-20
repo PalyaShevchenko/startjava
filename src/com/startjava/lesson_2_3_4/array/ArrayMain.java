@@ -3,10 +3,10 @@ package com.startjava.lesson_2_3_4.array;
 public class ArrayMain {
 
     public static void main(String[] args) {
-        System.out.println("1. Реверс значений массива");
+        System.out.println("\n1. Реверс значений массива");
         int[] intArr = {2, 5, 3, 1, 6, 7, 4};
         System.out.println("Исходный массив");
-        printArray(intArr);
+        printIntArray(intArr);
         int length = intArr.length;
         for (int i = 0; i <= length / 2; i++) {
             --length;
@@ -15,9 +15,9 @@ public class ArrayMain {
             intArr[length] = temp;
         }
         System.out.println("\nМассив после реверса значений");
-        printArray(intArr);
+        printIntArray(intArr);
 
-        System.out.println("\n2. Вывод произведения элементов массива");
+        System.out.println("\n\n2. Вывод произведения элементов массива");
         intArr = new int[10];
         length = intArr.length;
         for (int i = 0; i < length; i++) {
@@ -29,51 +29,49 @@ public class ArrayMain {
             System.out.print(i + (i != length - 2 ? " * " : " = " + multNum));
         }
 
-        System.out.println("\n3. Удаление элементов массива");
+        System.out.println("\n\n3. Удаление элементов массива");
         double[] doubleArr = new double[15];
         length = doubleArr.length;
         for (int i = 0; i < length; i++) {
             doubleArr[i] = Math.random();
         }
         System.out.println("Исходный массив");
-        printArrayFormat(doubleArr, 8);
-        double valueCellMiddle = doubleArr[doubleArr.length / 2];
-        int counterСhanges = 0;
+        printDoubleArray(doubleArr, 8);
+        double middleNum = doubleArr[doubleArr.length / 2];
+        int countСhanges = 0;
         for (int i = 0; i < length; i++) {
-            if (doubleArr[i] > valueCellMiddle) {
+            if (doubleArr[i] > middleNum) {
                 doubleArr[i] = 0;
-                counterСhanges++;
+                countСhanges++;
             }
         }
-        System.out.println("Измененный массив");
-        printArrayFormat(doubleArr, 8);
-        System.out.println("Количество обнуленных ячеек: " + counterСhanges);
+        System.out.println("\nИзмененный массив");
+        printDoubleArray(doubleArr, 8);
+        System.out.println("\nКоличество обнуленных ячеек: " + countСhanges);
 
-        System.out.println("4. Вывод элементов массива лесенкой в обратном порядке");
-        char[] letterArr = new char[26];
-        length = letterArr.length;
+        System.out.println("\n4. Вывод элементов массива лесенкой в обратном порядке");
+        char[] alphabetArr = new char[26];
+        length = alphabetArr.length;
         for (int i = 0; i < length; i++) {
-            letterArr[i] = (char) (i+65);
+            alphabetArr[i] = (char) ('A' + i);
         }
-        printArrayLadder(letterArr);
+        printAlphabet(alphabetArr);
 
         System.out.println("\n5. Генерация уникальных чисел");
         intArr = new int[30];
         length = intArr.length;
-        intArr[0] = (int) ((Math.random()*(100-60))+60);
-        for (int i = 1; i < length; i++) {
-            boolean isNumRepeats = false;
+        for (int i = 0; i < length; i++) {
+            boolean isUnique = false;
             do {
-                intArr[i] = (int) ((Math.random()*(100-60))+60);
+                intArr[i] = (int) ((Math.random() * (100 - 60)) + 60);
                 for (int j = 0; j <= i - 1; j++) {
                     if (intArr[i] == intArr[j]) {
-                        isNumRepeats = true;
+                        isUnique = true;
                         break;
-                    } else {
-                        isNumRepeats = false;
                     }
+                    isUnique = false;
                 }
-            } while (isNumRepeats);
+            } while (isUnique);
         }
         for (int i = 1; i < length-1; i++) {
             boolean isChange = false;
@@ -89,49 +87,42 @@ public class ArrayMain {
                 break;
             }
         }
-        printArrayFormat(intArr, 10);
+        printIntArray(intArr, 10);
 
         System.out.println("\n6. Сдвиг элементов массива");
         String[] strArr = {"    ", "AA", "", "BBB", "CC", "D", "    ", "E", "FF", "G", ""};
         length = strArr.length;
         int counter = 0;
         for (int i = 0; i < length; i++) {
-            if (strArr[i].isBlank()) {
+            if (!strArr[i].isBlank()) {
                 counter++;
             }
         }
-        String[] strArrChange = new String[length - counter];
+        String[] strArrChange = new String[counter];
         int destPos = 0;
-        int lengthCopy = 0;
+        int srcPos = 0;
         int i = 0;
-        boolean isBlank = false;
         while (i < length) {
-
-            if (!strArr[i].isBlank()) {
+            int lengthCopy = 0;
+            while (i < length && !strArr[i].isBlank()) {
                 lengthCopy++;
-                isBlank = !strArr[i].isBlank();
-                if(i == length - 1) {
-                    System.arraycopy(strArr, i - lengthCopy + 1, strArrChange, destPos, lengthCopy);
-                }
-            }else if (isBlank) {
-                System.arraycopy(strArr, i - lengthCopy, strArrChange, destPos, lengthCopy);
-                destPos += lengthCopy;
-                lengthCopy = 0;
-                isBlank = strArr[i].isBlank();
+                i++;
             }
+            System.arraycopy(strArr, srcPos, strArrChange, destPos, lengthCopy);
+            destPos += lengthCopy;
             i++;
+            srcPos = i;
         }
-        printArrayStr(strArr);
+        printStrArray(strArr);
         System.out.println();
-        printArrayStr(strArrChange);
+        printStrArray(strArrChange);
     }
-
-    private static void printArray(int[] nums) {
+    private static void printIntArray(int[] nums) {
         for (int num : nums) {
             System.out.print(num + " ");
         }
     }
-    private static void printArrayFormat(double[] nums, int numElementsLine) {
+    private static void printDoubleArray(double[] nums, int numElementsLine) {
         for (int i = 0; i < nums.length; i++) {
             System.out.printf("%.3f ", nums[i]);
             if (i != 0 && (i + 1) % numElementsLine == 0){
@@ -139,25 +130,22 @@ public class ArrayMain {
             }
         }
     }
-
-    private static void printArrayLadder(char[] letterArr) {
+    private static void printAlphabet(char[] alphabet) {
         String letters = "";
-        for (int i = letterArr.length - 1; i >= 0; i--) {
-            letters += letterArr[i];
+        for (int i = alphabet.length - 1; i >= 0; i--) {
+            letters += alphabet[i];
             System.out.println(letters);
         }
     }
-
-    private static void printArrayFormat(int[] nums, int numElementsLine) {
+    private static void printIntArray(int[] nums, int numElementsLine) {
         for (int i = 0; i < nums.length; i++) {
             System.out.print(nums[i] + " ");
-            if (i != 0 && (i + 1) % numElementsLine == 0){
+            if (i != 0 && (i + 1) % numElementsLine == 0) {
                 System.out.println();
             }
         }
     }
-
-    private static void printArrayStr(String[] strArr) {
+    private static void printStrArray(String[] strArr) {
         for (String string : strArr) {
             System.out.print(string + " ");
         }
