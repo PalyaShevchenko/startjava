@@ -50,34 +50,36 @@ public class ArrayMain {
         System.out.println("\nКоличество обнуленных ячеек: " + countСhanges);
 
         System.out.println("\n4. Вывод элементов массива лесенкой в обратном порядке");
-        char[] alphabetArr = new char[26];
-        length = alphabetArr.length;
+        char[] alphabet = new char[26];
+        length = alphabet.length;
         for (int i = 0; i < length; i++) {
-            alphabetArr[i] = (char) ('A' + i);
+            alphabet[i] = (char) ('A' + i);
         }
-        printAlphabet(alphabetArr);
+        printAlphabet(alphabet);
 
         System.out.println("\n5. Генерация уникальных чисел");
         intArr = new int[30];
         length = intArr.length;
+        int temp;
         for (int i = 0; i < length; i++) {
-            boolean isUnique = false;
+            boolean unique = false;
             do {
-                intArr[i] = (int) ((Math.random() * (100 - 60)) + 60);
+                temp = (int) ((Math.random() * (100 - 60)) + 60);
                 for (int j = 0; j <= i - 1; j++) {
-                    if (intArr[i] == intArr[j]) {
-                        isUnique = true;
+                    if (temp == intArr[j]) {
+                        unique = true;
                         break;
                     }
-                    isUnique = false;
+                    unique = false;
                 }
-            } while (isUnique);
+            } while (unique);
+            intArr[i] = temp;
         }
         for (int i = 1; i < length-1; i++) {
             boolean isChange = false;
             for (int j = 0; j < length-i; j++) {
                 if (intArr[j] > intArr[j + 1]) {
-                    int temp = intArr[j + 1];
+                    temp = intArr[j + 1];
                     intArr[j + 1] = intArr[j];
                     intArr[j] = temp;
                     isChange = true;
@@ -92,30 +94,30 @@ public class ArrayMain {
         System.out.println("\n6. Сдвиг элементов массива");
         String[] strArr = {"    ", "AA", "", "BBB", "CC", "D", "    ", "E", "FF", "G", ""};
         length = strArr.length;
-        int counter = 0;
+        int count = 0;
         for (int i = 0; i < length; i++) {
             if (!strArr[i].isBlank()) {
-                counter++;
+                count++;
             }
         }
-        String[] strArrChange = new String[counter];
+        String[] desArr = new String[count];
         int destPos = 0;
         int srcPos = 0;
         int i = 0;
         while (i < length) {
-            int lengthCopy = 0;
+            int countStrings = 0;
             while (i < length && !strArr[i].isBlank()) {
-                lengthCopy++;
+                countStrings++;
                 i++;
             }
-            System.arraycopy(strArr, srcPos, strArrChange, destPos, lengthCopy);
-            destPos += lengthCopy;
+            System.arraycopy(strArr, srcPos, desArr, destPos, countStrings);
+            destPos += countStrings;
             i++;
             srcPos = i;
         }
         printStrArray(strArr);
         System.out.println();
-        printStrArray(strArrChange);
+        printStrArray(desArr);
     }
 
     private static void printIntArray(int[] nums) {
