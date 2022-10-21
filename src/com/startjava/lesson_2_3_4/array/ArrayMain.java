@@ -117,11 +117,13 @@ public class ArrayMain {
         System.out.println();
         printStrArray(strArrChange);
     }
+
     private static void printIntArray(int[] nums) {
         for (int num : nums) {
             System.out.print(num + " ");
         }
     }
+
     private static void printDoubleArray(double[] nums, int numElementsLine) {
         for (int i = 0; i < nums.length; i++) {
             System.out.printf("%.3f ", nums[i]);
@@ -130,6 +132,7 @@ public class ArrayMain {
             }
         }
     }
+
     private static void printAlphabet(char[] alphabet) {
         String letters = "";
         for (int i = alphabet.length - 1; i >= 0; i--) {
@@ -137,6 +140,7 @@ public class ArrayMain {
             System.out.println(letters);
         }
     }
+
     private static void printIntArray(int[] nums, int numElementsLine) {
         for (int i = 0; i < nums.length; i++) {
             System.out.print(nums[i] + " ");
@@ -145,6 +149,7 @@ public class ArrayMain {
             }
         }
     }
+
     private static void printStrArray(String[] strArr) {
         for (String string : strArr) {
             System.out.print(string + " ");
