@@ -2,42 +2,34 @@ package com.startjava.lesson_2_3_4.calculator;
 
 public class Calculator {
 
+    private String expression;
     private int num1;
     private int num2;
     private String sign;
 
-    public void setNum1(int num1) {
-        this.num1 = num1;
-    }
-
-    public void setSign(String sign) {
-        this.sign = sign;
-    }
-
-    public void setNum2(int num2) {
-        this.num2 = num2;
+    public void setExpression(String expression) {
+        this.expression = expression;
+        String[] mathExpressionArr = expression.split(" ");
+        num1 = Integer.parseInt(mathExpressionArr[0]);
+        sign = mathExpressionArr[1];
+        num2 = Integer.parseInt(mathExpressionArr[2]);
     }
 
     public long сalc() {
-        //return result;
+
         switch (sign) {
             case "+" :
-                return num1 + num2;
+                return Math.addExact(num1, num2);
             case "-" :
-                return num1 - num2;
+                return Math.subtractExact(num1, num2);
             case "*" :
-                return num1 * num2;
+                return Math.multiplyExact(num1, num2);
             case "/" :
-                return  num1 / num2;
+                return Math.floorDiv(num1, num2);
             case "^" :
-                long result;
-                result = num1;
-                for (int i = 2; i <= num2; i++) {
-                    result *= result;
-                }
-                return result;
+                return (long) Math.pow(num1,num2);
             case "%" :
-                return num1 % num2;
+                return Math.floorMod(num1, num2);
             default:
                 System.out.println("неизвестный оператор");
         }

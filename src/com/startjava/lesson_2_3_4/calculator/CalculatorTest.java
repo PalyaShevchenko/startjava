@@ -9,13 +9,9 @@ public class CalculatorTest {
         Scanner console = new Scanner(System.in);
         String userAnswer;
         do {
-            System.out.print("Введите первое число: ");
-            calc.setNum1(console.nextInt());
-            System.out.print("Введите знак математической операции: ");
-            console.nextLine();
-            calc.setSign(console.nextLine());
-            System.out.print("Введите второе число: ");
-            calc.setNum2(console.nextInt());
+            System.out.print("Введите математическое выражение: ");
+            calc.setExpression(console.nextLine());
+            //console.nextLine();
             System.out.print("результат " + calc.сalc());
             console.nextLine();
             do {
