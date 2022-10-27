@@ -12,10 +12,8 @@ public class GuessNumberTest {
         System.out.print("Введите имя второго игрока: ");
         Player player2 = new Player(console.nextLine());
         player2.setAttempt(0);
-
         player1.setNextPlayer(player2);
         player2.setNextPlayer(player1);
-
         GuessNumber game = new GuessNumber(player1, player2);
         String playerAnswer;
         do {

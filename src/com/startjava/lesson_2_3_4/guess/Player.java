@@ -25,17 +25,12 @@ public class Player {
         return attempt;
     }
 
-    public void setNum(int num) {
-        nums[attempt] = num;
-        if (attempt + 1 == nums.length) {
-            System.out.println("У " + name + " закончились попытки"); //тут так можно?
-        } else {
-            attempt++;
-        }
+    public void setNum(int num, int i) {
+        nums[i] = num;
     }
 
-    public int getNum(int attempt) {
-        return nums[attempt];
+    public int getNum(int i) {
+        return nums[i];
     }
 
     public void setNextPlayer(Player nextPlayer) {
@@ -52,5 +47,6 @@ public class Player {
 
     public void reset() {
         Arrays.fill(nums, 0, attempt, 0);
+        attempt = 0;
     }
 }
