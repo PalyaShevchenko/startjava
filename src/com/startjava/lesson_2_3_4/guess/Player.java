@@ -6,8 +6,7 @@ public class Player {
 
     private String name;
     private int attempt;
-    private int[] nums = new int[GuessNumber.numAttempts];
-    private Player nextPlayer;  // ссылка на следующего игрока
+    private int[] nums = new int[GuessNumber.NUM_ATTEMPTS];
 
     public Player(String name) {
         this.name = name;
@@ -25,20 +24,12 @@ public class Player {
         return attempt;
     }
 
-    public void setNum(int num, int i) {
-        nums[i] = num;
+    public void setNum(int num) {
+        nums[attempt] = num;
     }
 
-    public int getNum(int i) {
-        return nums[i];
-    }
-
-    public void setNextPlayer(Player nextPlayer) {
-        this.nextPlayer = nextPlayer;
-    }
-
-    public Player getNextPlayer() {
-        return nextPlayer;
+    public int getNum() {
+        return nums[attempt - 1];
     }
 
     public int[] getNums() {
