@@ -10,7 +10,7 @@ public class Calculator {
         String mathOperator = partsExpression[1];
         int num2 = Integer.parseInt(partsExpression[2]);
         if ((num1 < 1) || (num2 < 1)) {
-            throw new InputMismatchException();
+            throw new InputMismatchException("Число должно быть больше 0");
         }
         return switch (mathOperator) {
             case "+" -> Math.addExact(num1, num2);
@@ -19,7 +19,7 @@ public class Calculator {
             case "/" -> Math.floorDiv(num1, num2);
             case "^" -> (long) Math.pow(num1, num2);
             case "%" -> Math.floorMod(num1, num2);
-            default -> throw new IllegalStateException(); //"неизвестный оператор"
+            default -> throw new IllegalStateException("Некорректный знак операции"); //"неизвестный оператор"
         };
     }
 }

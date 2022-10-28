@@ -12,14 +12,14 @@ public class CalculatorTest {
             System.out.print("Введите математическое выражение: ");
             try {
                 System.out.print("результат " + Calculator.calc(console.nextLine()));
-            } catch (NumberFormatException exception) {
+            } catch (NumberFormatException e) {
                 System.out.print("Число должно быть целым");
-            } catch (ArithmeticException exception) {
+            } catch (ArithmeticException e) {
                 System.out.print("Деление на 0");
-            } catch (IllegalStateException exception) {
-                System.out.print("Некорректный знак операции");
-            } catch (InputMismatchException exception) {
-                System.out.print("Число должно быть больше 0");
+            } catch (IllegalStateException e) {
+                System.out.println(e.getMessage());
+            } catch (InputMismatchException e) {
+                System.out.println(e.getMessage());
             }
             do {
                 System.out.print("\n\nХотите продолжить вычисления? [yes/no]:");
