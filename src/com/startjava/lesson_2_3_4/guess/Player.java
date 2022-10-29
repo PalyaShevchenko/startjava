@@ -16,16 +16,13 @@ public class Player {
         return name;
     }
 
-    public void setAttempt(int attempt) {
-        this.attempt = attempt;
-    }
-
     public int getAttempt() {
         return attempt;
     }
 
-    public void setNum(int num) {
+    public void addNum(int num) {
         nums[attempt] = num;
+        attempt++;
     }
 
     public int getNum() {
