@@ -7,6 +7,7 @@ public class Player {
     private String name;
     private int attempt;
     private int[] nums = new int[GuessNumber.NUM_ATTEMPTS];
+    private int victory;
 
     public Player(String name) {
         this.name = name;
@@ -31,6 +32,14 @@ public class Player {
 
     public int[] getNums() {
         return Arrays.copyOf(nums, attempt);
+    }
+
+    public void setVictory(int victory) {
+        this.victory = victory;
+    }
+
+    public int getVictory() {
+        return victory;
     }
 
     public void reset() {
