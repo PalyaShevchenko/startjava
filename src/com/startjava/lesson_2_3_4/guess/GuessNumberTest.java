@@ -9,13 +9,12 @@ public class GuessNumberTest {
         System.out.print("Введите количество игроков: ");
         int numPlayers = console.nextInt();
         console.nextLine();
-        Player[] player = new Player[numPlayers];
+        Player[] players = new Player[numPlayers];
         for (int i = 0; i < numPlayers; i++) {
             System.out.print("Введите имя " + (i + 1) + " игрока: ");
-            player[i] = new Player(console.nextLine());
+            players[i] = new Player(console.nextLine());
         }
-        GuessNumber game = new GuessNumber(player);
-        game.shuffling();
+        GuessNumber game = new GuessNumber(players);
         String options;
         do {
             game.play();
