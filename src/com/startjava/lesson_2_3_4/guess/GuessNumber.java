@@ -35,9 +35,9 @@ public class GuessNumber {
                 }
                 j = ++j % length;
             } while (player[length - 1].getAttempt() < NUM_ATTEMPTS);
-            for (j = 0; j < length; j++) {
-                printPlayersAttempts(player[j]);
-                player[j].reset();
+            for (Player iPlayer : player) {
+                printPlayersAttempts(iPlayer);
+                iPlayer.reset();
             }
         }
         printNameVictory();
@@ -87,16 +87,16 @@ public class GuessNumber {
 
     private void printNameVictory() {
         int maxVictory = 0;
-        for (int i = 0; i < player.length; i++) {
-            if (maxVictory < player[i].getVictory()) {
-                maxVictory = player[i].getVictory();
+        for (Player iPlayer : player) {
+            if (maxVictory < iPlayer.getVictory()) {
+                maxVictory = iPlayer.getVictory();
             }
         }
         if (maxVictory != 0) {
             System.out.println("Победа присуждается:");
-            for (int i = 0; i < player.length; i++) {
-                if (maxVictory == player[i].getVictory()) {
-                    System.out.println(player[i].getName());
+            for (Player iPlayer : player) {
+                if (maxVictory == iPlayer.getVictory()) {
+                    System.out.println(iPlayer.getName());
                 }
             }
         } else {
