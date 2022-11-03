@@ -1,7 +1,6 @@
 package com.startjava.lesson_2_3_4.guess;
 
 import java.util.Arrays;
-import java.util.Scanner;
 
 public class Player {
 
@@ -22,21 +21,14 @@ public class Player {
         return attempt;
     }
 
-    public void addNum() {
-        Scanner console = new Scanner(System.in);
-        int num;
-        boolean isNumInRange;
-        do {
-            isNumInRange = false;
-            System.out.print("игрок " + getName() + " назовите число: ");
-            num = console.nextInt();
-            if ((num <= 0) || (num > 100)) {
-                System.out.println("Введенное число, вне допустимого диапазона. Вводите числа от 1 до 100");
-                isNumInRange = true;
-            }
-        } while (isNumInRange);
+    public boolean addNum(int num) {
+        if ((num <= 0) || (num > 100)) {
+            System.out.println("Введенное число, вне допустимого диапазона. Вводите числа от 1 до 100");
+            return false;
+        }
         nums[attempt] = num;
         attempt++;
+        return true;
     }
 
     public int getNum() {

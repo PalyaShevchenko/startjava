@@ -1,5 +1,7 @@
 package com.startjava.lesson_2_3_4.guess;
 
+import java.util.Scanner;
+
 public class GuessNumber {
 
     public static final int ATTEMPTS_LIMIT = 10;
@@ -14,20 +16,24 @@ public class GuessNumber {
     public void play() {
         castLots();
         for (int i = 1; i <= NUM_ROUNDS; i++) {
+            System.out.println("Раунд " + i);
             secretNum = generateSecretNum();
             System.out.println("secretNum = " + secretNum);
             int length = players.length;
             int j = 0;
             do {
-                players[j].addNum();
+                Scanner console = new Scanner(System.in);
+                do {
+                    System.out.print("Игрок " + players[j].getName() + "введите число: ");
+                }while (!players[j].addNum(console.nextInt()));
                 if (isGuessed(players[j])) {
                     break;
                 }
                 j = ++j % length;
             } while (players[length - 1].getAttempt() < ATTEMPTS_LIMIT);
-            for (Player iPlayer : players) {
-                printPlayersAttempts(iPlayer);
-                iPlayer.reset();
+            for (Player player : players) {
+                printPlayersAttempts(player);
+                player.reset();
             }
         }
         printNameWinner();
@@ -70,16 +76,16 @@ public class GuessNumber {
 
     private void printNameWinner() {
         int maxNumWins = 0;
-        for (Player iPlayer : players) {
-            if (maxNumWins < iPlayer.getNumWins()) {
-                maxNumWins = iPlayer.getNumWins();
+        for (Player player : players) {
+            if (maxNumWins < player.getNumWins()) {
+                maxNumWins = player.getNumWins();
             }
         }
         if (maxNumWins != 0) {
             System.out.println("Победа присуждается:");
-            for (Player iPlayer : players) {
-                if (maxNumWins == iPlayer.getNumWins()) {
-                    System.out.println(iPlayer.getName());
+            for (Player player : players) {
+                if (maxNumWins == player.getNumWins()) {
+                    System.out.println(player.getName());
                 }
             }
         } else {

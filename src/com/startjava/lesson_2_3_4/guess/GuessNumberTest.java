@@ -4,7 +4,20 @@ import java.util.Scanner;
 
 public class GuessNumberTest {
 
-    public static void main (String[] args) {
+    public static void main(String[] args) {
+        Scanner console = new Scanner(System.in);
+        GuessNumber game = new GuessNumber(createPlayers());
+        String option;
+        do {
+            game.play();
+            do {
+                System.out.print("\nХотите продолжить игру? [yes/no]:");
+                option = console.nextLine().toLowerCase();
+            } while (!option.equals("yes") && !option.equals("no"));
+        } while (option.equals("yes"));
+    }
+
+    private static Player[] createPlayers() {
         Scanner console = new Scanner(System.in);
         System.out.print("Введите количество игроков: ");
         int numPlayers = console.nextInt();
@@ -14,14 +27,6 @@ public class GuessNumberTest {
             System.out.print("Введите имя " + (i + 1) + " игрока: ");
             players[i] = new Player(console.nextLine());
         }
-        GuessNumber game = new GuessNumber(players);
-        String options;
-        do {
-            game.play();
-            do {
-                System.out.print("\nХотите продолжить игру? [yes/no]:");
-                options = console.nextLine().toLowerCase();
-            } while (!options.equals("yes") && !options.equals("no"));
-        } while (options.equals("yes"));
+        return players;
     }
 }
