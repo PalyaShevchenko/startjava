@@ -1,8 +1,5 @@
 package com.startjava.graduation.bookshelf;
 
-import com.startjava.lesson_2_3_4.guess.Player;
-
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Bookshelf {
@@ -39,7 +36,6 @@ public class Bookshelf {
                 System.out.println("Введен некорректный пункт меню");
                 return true;
             }
-                    //throw new IllegalStateException("Некорректный знак операции"); //"неизвестный оператор"
         }
     }
 
@@ -90,9 +86,11 @@ public class Bookshelf {
             System.out.println("В шкафу " + numBooks + " книги и свободно " + (10 - numBooks) + " полок");
             String minus = new String(new char[widthShelve]).replace('\0', '-');
             for (int i = 0; i < numBooks; i++) {
-                int numSpace = widthShelve - (books[i].getAuthor().length() + books[i].getName().length() + 9); // разобраться с годом
+                int numSpace = widthShelve - (books[i].getAuthor().length() +
+                        books[i].getName().length() + books[i].getPublication().length() + 5);
                 String space = new String(new char[numSpace]).replace('\0', ' ');
-                System.out.println("| " + books[i].getAuthor() + ", " + books[i].getName() + ", " + books[i].getPublication() + space + "|");
+                System.out.println("| " + books[i].getAuthor() + ", " + books[i].getName() +
+                        ", " + books[i].getPublication() + space + "|");
                 System.out.println("|" + minus + "|");
             }
         } else {
