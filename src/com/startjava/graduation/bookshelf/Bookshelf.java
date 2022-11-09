@@ -1,7 +1,6 @@
 package com.startjava.graduation.bookshelf;
 
 import java.util.Arrays;
-import java.util.Scanner;
 
 public class Bookshelf {
 
@@ -30,15 +29,10 @@ public class Bookshelf {
         return maxLengthBook;
     }
 
-    public void addBook() {
-        Scanner console = new Scanner(System.in);
-        System.out.print("Введите название книги: ");
-        books[numBooks] = new Book(console.nextLine());
-        System.out.print("Введите автора книги: ");
-        books[numBooks].setAuthor(console.nextLine());
-        System.out.print("Введите год издания книги: ");
-        books[numBooks].setPublishYear(console.nextInt());//обработка ошибки
-        console.nextLine();
+    public void addBook(String author, String title, int year) {
+        books[numBooks] = new Book(title);
+        books[numBooks].setAuthor(author);
+        books[numBooks].setPublishYear(year);
         int lengthBook = books[numBooks].toSting().length();
         if (lengthBook > maxLengthBook) {
             maxLengthBook = lengthBook;

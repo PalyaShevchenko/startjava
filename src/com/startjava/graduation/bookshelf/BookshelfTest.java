@@ -1,5 +1,6 @@
 package com.startjava.graduation.bookshelf;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class BookshelfTest {
@@ -20,7 +21,19 @@ public class BookshelfTest {
         switch (menuItem) {
             case 1 -> {
                 if (bookshelf.getNumBooks() != Bookshelf.BOOKSHELF_SIZE) {
-                    bookshelf.addBook();// Добавить книгу
+                    System.out.print("Введите название книги: ");
+                    String title = console.nextLine();
+                    System.out.print("Введите автора книги: ");
+                    String author = console.nextLine();
+                    try {
+                        System.out.print("Введите год издания книги: ");
+                        int year = console.nextInt(); //обработка ошибки
+                        console.nextLine();
+                        bookshelf.addBook(author, title, year);// Добавить книгу
+                    } catch (InputMismatchException e) {
+                        System.out.println("Год издания вводите цифрами. Книга не добавлена");
+                    }
+                    console.nextLine();
                 } else {
                     System.out.println("В шкафу больше нет места");
                 }

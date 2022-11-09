@@ -3,7 +3,7 @@ package com.startjava.graduation.bookshelf;
 public class Book {
     private String author;
     private String title;
-    private int publishYear; //год издания
+    private int publishYear;
 
     public Book(String title) {
         this.title = title;
