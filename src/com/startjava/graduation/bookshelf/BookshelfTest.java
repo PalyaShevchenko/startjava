@@ -28,8 +28,8 @@ public class BookshelfTest {
                     try {
                         System.out.print("Введите год издания книги: ");
                         int year = console.nextInt(); //обработка ошибки
-                        console.nextLine();
-                        bookshelf.addBook(author, title, year);// Добавить книгу
+                        Book book = new Book(author, title, year);
+                        bookshelf.addBook(book);// Добавить книгу
                     } catch (InputMismatchException e) {
                         System.out.println("Год издания вводите цифрами. Книга не добавлена");
                     }
@@ -40,10 +40,14 @@ public class BookshelfTest {
             }
             case 2 -> {
                 System.out.println("Введите название книги, которую желаете найти: ");
-                int index = bookshelf.findBook(console.nextLine()); // Найти книгу
-                if (index != -1) {
-                    System.out.println(bookshelf.getBook(index).toSting());
+                String title = console.nextLine();
+                Book book = bookshelf.getBook(title); // Найти книгу
+                if (book != null) {
+                    System.out.println(book);
+                } else {
+                    System.out.println("Книга \"" + title + "\" не найдена");
                 }
+
             }
             case 3 -> System.out.println("Книг на полке: "  + bookshelf.getNumBooks());
             case 4 -> System.out.println("Свободно " + bookshelf.getFreeSize() + " мест");
@@ -83,9 +87,9 @@ public class BookshelfTest {
             int maxWidthShelve = bookshelf.getMaxLengthBook();
             String line = new String(new char[maxWidthShelve]).replace('\0', '-');
             for (Book book : bookshelf.getBooks()) {
-                int numSpace = maxWidthShelve - book.toSting().length();
+                int numSpace = maxWidthShelve - book.getLengthBook();
                 String space = new String(new char[numSpace]).replace('\0', ' ');
-                System.out.println("|" + book.toSting() + space + "|");
+                System.out.println("|" + book + space + "|");
                 System.out.println("|" + line + "|");
             }
         } else {

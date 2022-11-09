@@ -6,7 +6,7 @@ public class Bookshelf {
 
     public static int BOOKSHELF_SIZE = 10;
     private int numBooks;
-    private final Book[] books = new Book[BOOKSHELF_SIZE];
+    private Book[] books = new Book[BOOKSHELF_SIZE];
     private int maxLengthBook;
 
     public int getNumBooks() {
@@ -21,57 +21,58 @@ public class Bookshelf {
         return Arrays.copyOf(books, numBooks);
     }
 
-    public Book getBook(int index) {
-        return books[index];
+    public Book getBook(String title) {
+        int index = findIndex(title);
+        if (index != -1) {
+            return books[index];
+        }
+        return null;
     }
 
     public int getMaxLengthBook() {
         return maxLengthBook;
     }
 
-    public void addBook(String author, String title, int year) {
-        books[numBooks] = new Book(title);
-        books[numBooks].setAuthor(author);
-        books[numBooks].setPublishYear(year);
-        int lengthBook = books[numBooks].toSting().length();
-        if (lengthBook > maxLengthBook) {
-            maxLengthBook = lengthBook;
+    public void addBook(Book book) {
+        books[numBooks] = book;
+        if (book.getLengthBook() > maxLengthBook) {
+            maxLengthBook = book.getLengthBook();
         }
         numBooks++;
     }
 
-    public int findBook(String title) {
-        for (int i = 0; i < numBooks; i++) {
-            if (books[i].getTitle().equals(title)) {
-                return i;
-            }
-        }
-        System.out.println("книга \"" + title + "\" не найдена");
-        return -1;
-    }
-
     public void deleteBook(String title) {
-        int index = findBook(title);
+        int index = findIndex(title);
         if (index != -1) {
-            boolean isLongestBook = maxLengthBook == books[index].toSting().length();
+            boolean isLongestBook = maxLengthBook == books[index].getLengthBook();
             for (int i = index; i < numBooks - 1; i++) {
                 books[i] = books[i+1];
             }
             numBooks--;
             if (isLongestBook) {
                 maxLengthBook = 0;
-                int temp;
-                for (int i = 0; i < numBooks; i++) {
-                    temp = books[i].toSting().length();
-                    if (maxLengthBook < temp) {
-                        maxLengthBook = temp;
+                for (Book book : getBooks()) {
+                    if (maxLengthBook < book.getLengthBook()) {
+                        maxLengthBook = book.getLengthBook();
                     }
                 }
             }
+        } else {
+            System.out.println("Книга \"" + title + "\" не найдена");
         }
     }
 
     public void clear() {
+        Arrays.fill(books, null);
         numBooks = 0;
+    }
+
+    private int findIndex(String title) {
+        for (int i = 0; i < numBooks; i++) {
+            if (books[i].getTitle().equals(title)) {
+                return i;
+            }
+        }
+        return -1;
     }
 }
