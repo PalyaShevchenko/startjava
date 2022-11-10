@@ -16,6 +16,35 @@ public class BookshelfTest {
         } while (menu(console.nextInt(), myBookshelf));
     }
 
+    private static void printBookshelf(Bookshelf bookshelf) {
+        int numBooks = bookshelf.getNumBooks();
+        if (numBooks > 0) {
+            System.out.println("В шкафу " + numBooks + " книги и свободно " + bookshelf.getFreeSize() + " полок");
+            int maxWidthShelve = bookshelf.getMaxLengthBook();
+            String line = new String(new char[maxWidthShelve]).replace('\0', '-');
+            for (Book book : bookshelf.getBooks()) {
+                int numSpace = maxWidthShelve - book.getLengthBook();
+                String space = new String(new char[numSpace]).replace('\0', ' ');
+                System.out.println("|" + book + space + "|");
+                System.out.println("|" + line + "|");
+            }
+        } else {
+            System.out.println("Шкаф пуст");
+        }
+    }
+
+    private static void printMenu() {
+        System.out.println("""
+                    1  Добавить книгу
+                    2  Найти книгу
+                    3  Вывести количество книг на полке
+                    4  Вывести количество свободных мест на полке
+                    5  Удалить книгу
+                    6  Очистить шкаф
+                    7  Выход
+                    """);
+    }
+
     private static boolean menu(int menuItem, Bookshelf bookshelf) {
         Scanner console = new Scanner(System.in);
         switch (menuItem) {
@@ -66,34 +95,5 @@ public class BookshelfTest {
             default -> System.out.println("Введен некорректный пункт меню");
         }
         return true;
-    }
-
-    private static void printMenu() {
-        System.out.println("""
-                    1  Добавить книгу
-                    2  Найти книгу
-                    3  Вывести количество книг на полке
-                    4  Вывести количество свободных мест на полке
-                    5  Удалить книгу
-                    6  Очистить шкаф
-                    7  Выход
-                    """);
-    }
-
-    private static void printBookshelf(Bookshelf bookshelf) {
-        int numBooks = bookshelf.getNumBooks();
-        if (numBooks > 0) {
-            System.out.println("В шкафу " + numBooks + " книги и свободно " + bookshelf.getFreeSize() + " полок");
-            int maxWidthShelve = bookshelf.getMaxLengthBook();
-            String line = new String(new char[maxWidthShelve]).replace('\0', '-');
-            for (Book book : bookshelf.getBooks()) {
-                int numSpace = maxWidthShelve - book.getLengthBook();
-                String space = new String(new char[numSpace]).replace('\0', ' ');
-                System.out.println("|" + book + space + "|");
-                System.out.println("|" + line + "|");
-            }
-        } else {
-            System.out.println("Шкаф пуст");
-        }
     }
 }
