@@ -13,23 +13,23 @@ public class BookshelfTest {
             printBookshelf(myBookshelf);
             printMenu();
             System.out.print("Введите пункт меню: ");
-        } while (menu(console.nextInt(), myBookshelf));
+        } while (doAction(console.nextInt(), myBookshelf));
     }
 
     private static void printBookshelf(Bookshelf bookshelf) {
         int numBooks = bookshelf.getNumBooks();
         if (numBooks > 0) {
-            System.out.println("В шкафу " + numBooks + " книги и свободно " + bookshelf.getFreeSize() + " полок");
+            System.out.println("В шкафу " + numBooks + " книги и свободно " +
+                    bookshelf.getFreeSize() + " полок");
             int maxWidthShelve = bookshelf.getMaxLengthBook();
-            String line = new String(new char[maxWidthShelve]).replace('\0', '-');
+            String line = "-".repeat(maxWidthShelve);
             for (Book book : bookshelf.getBooks()) {
-                int numSpace = maxWidthShelve - book.getLengthBook();
-                String space = new String(new char[numSpace]).replace('\0', ' ');
+                String space = " ".repeat(maxWidthShelve - book.getLengthBook());
                 System.out.println("|" + book + space + "|");
                 System.out.println("|" + line + "|");
             }
         } else {
-            System.out.println("Шкаф пуст");
+            System.out.println("Шкаф пуст. Вы можете добавить в него первую книгу");
         }
     }
 
@@ -37,15 +37,13 @@ public class BookshelfTest {
         System.out.println("""
                     1  Добавить книгу
                     2  Найти книгу
-                    3  Вывести количество книг на полке
-                    4  Вывести количество свободных мест на полке
-                    5  Удалить книгу
-                    6  Очистить шкаф
-                    7  Выход
+                    3  Удалить книгу
+                    4  Очистить шкаф
+                    5  Выход
                     """);
     }
 
-    private static boolean menu(int menuItem, Bookshelf bookshelf) {
+    private static boolean doAction(int menuItem, Bookshelf bookshelf) {
         Scanner console = new Scanner(System.in);
         switch (menuItem) {
             case 1 -> {
@@ -56,9 +54,9 @@ public class BookshelfTest {
                     String author = console.nextLine();
                     try {
                         System.out.print("Введите год издания книги: ");
-                        int year = console.nextInt(); //обработка ошибки
+                        int year = console.nextInt();
                         Book book = new Book(author, title, year);
-                        bookshelf.addBook(book);// Добавить книгу
+                        bookshelf.addBook(book);
                     } catch (InputMismatchException e) {
                         System.out.println("Год издания вводите цифрами. Книга не добавлена");
                     }
@@ -68,32 +66,32 @@ public class BookshelfTest {
                 }
             }
             case 2 -> {
-                System.out.println("Введите название книги, которую желаете найти: ");
+                System.out.print("Введите название книги, которую желаете найти: ");
                 String title = console.nextLine();
-                Book book = bookshelf.getBook(title); // Найти книгу
-                if (book != null) {
-                    System.out.println(book);
-                } else {
-                    System.out.println("Книга \"" + title + "\" не найдена");
-                }
-
+                Book book = bookshelf.findBook(title);
+                String string = book != null ? "Найдена книга: " + book :
+                        "Книга \"" + title + "\" не найдена";
+                System.out.println(string);
             }
-            case 3 -> System.out.println("Книг на полке: "  + bookshelf.getNumBooks());
-            case 4 -> System.out.println("Свободно " + bookshelf.getFreeSize() + " мест");
-            case 5 -> {
+            case 3 -> {
                 if (bookshelf.getNumBooks() != 0) {
-                    System.out.println("Введите название книги, которую желаете убрать из шкафа: ");
-                    bookshelf.deleteBook(console.nextLine()); // Удалить книгу
+                    System.out.print("Введите название книги, которую желаете убрать из шкафа: ");
+                    bookshelf.deleteBook(console.nextLine());
                 } else {
-                    System.out.println("Больше нечего удалять");
+                    System.out.println("Полка пуста");
                 }
             }
-            case 6 -> bookshelf.clear();// Очистить шкаф
-            case 7 -> {
+            case 4 -> {
+                bookshelf.clear();
+                System.out.println("Полка очищена");
+            }
+            case 5 -> {
                 return false; // Выход
             }
             default -> System.out.println("Введен некорректный пункт меню");
         }
+        System.out.println("Для продолжения работы нажмите Enter");
+        console.nextLine();
         return true;
     }
 }

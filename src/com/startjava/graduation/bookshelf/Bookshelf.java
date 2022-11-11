@@ -21,14 +21,6 @@ public class Bookshelf {
         return Arrays.copyOf(books, numBooks);
     }
 
-    public Book getBook(String title) {
-        int index = findIndex(title);
-        if (index != -1) {
-            return books[index];
-        }
-        return null;
-    }
-
     public int getMaxLengthBook() {
         return maxLengthBook;
     }
@@ -41,13 +33,19 @@ public class Bookshelf {
         numBooks++;
     }
 
+    public Book findBook(String title) {
+        int index = findIndex(title);
+        if (index != -1) {
+            return books[index];
+        }
+        return null;
+    }
+
     public void deleteBook(String title) {
         int index = findIndex(title);
         if (index != -1) {
             boolean isLongestBook = maxLengthBook == books[index].getLengthBook();
-            for (int i = index; i < numBooks - 1; i++) {
-                books[i] = books[i+1];
-            }
+            System.arraycopy(books, index + 1, books, index, numBooks - (index + 1));
             numBooks--;
             if (isLongestBook) {
                 maxLengthBook = 0;
@@ -57,14 +55,17 @@ public class Bookshelf {
                     }
                 }
             }
+            System.out.println("Книга \"" + title + "\" удалена");
         } else {
             System.out.println("Книга \"" + title + "\" не найдена");
         }
     }
 
     public void clear() {
-        Arrays.fill(books, null);
-        numBooks = 0;
+        if (numBooks != 0) {
+            Arrays.fill(books, 0, numBooks - 1, null);
+            numBooks = 0;
+        }
     }
 
     private int findIndex(String title) {
