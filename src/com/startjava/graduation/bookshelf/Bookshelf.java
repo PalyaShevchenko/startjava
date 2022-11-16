@@ -35,23 +35,21 @@ public class Bookshelf {
 
     public Book findBook(String title) {
         int index = findIndex(title);
-        if (index != -1) {
-            return books[index];
-        }
-        return null;
+        return  index != -1 ? books[index] : null;
     }
 
     public void deleteBook(String title) {
         int index = findIndex(title);
         if (index != -1) {
             boolean isLongestBook = maxLengthBook == books[index].getLengthBook();
-            System.arraycopy(books, index + 1, books, index, numBooks - (index + 1));
+            System.arraycopy(books, index + 1, books, index, numBooks - (index - 1));
             numBooks--;
             if (isLongestBook) {
                 maxLengthBook = 0;
                 for (Book book : getBooks()) {
-                    if (maxLengthBook < book.getLengthBook()) {
-                        maxLengthBook = book.getLengthBook();
+                    int lengthBook = book.getLengthBook();
+                    if (maxLengthBook < lengthBook) {
+                        maxLengthBook = lengthBook;
                     }
                 }
             }
