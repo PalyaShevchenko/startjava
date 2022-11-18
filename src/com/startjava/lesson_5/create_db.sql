@@ -1,4 +1,6 @@
-CREATE DATABASE Jaegers;
+CREATE DATABASE jaegers;
+
+\connect jaegers;
 
 CREATE TABLE Jaegers (
     id        SERIAL PRIMARY KEY, 
@@ -10,4 +12,4 @@ CREATE TABLE Jaegers (
     origin    TEXT, 
     launch    INTEGER, 
     kaijuKill INTEGER
-    );
+);

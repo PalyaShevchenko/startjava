@@ -1,20 +1,20 @@
 --выведите всю таблицу
 SELECT * 
-  FROM Jaegers;
+  FROM jaegers;
 
 --отобразите только не уничтоженных роботов
 SELECT * 
-  FROM Jaegers 
+  FROM jaegers 
  WHERE status = 'Active';
 
 --отобразите роботов нескольких серий: Mark-1 и Mark-4
 SELECT * 
-  FROM Jaegers 
+  FROM jaegers 
  WHERE mark IN (1, 4);
 
 --отобразите всех роботов, кроме Mark-1 и Mark-4
 SELECT * 
-  FROM Jaegers  
+  FROM jaegers  
  WHERE mark NOT IN (1, 4);
 
 --отсортируйте таблицу по убыванию по столбцу mark
@@ -49,5 +49,3 @@ UPDATE Jaegers
 --удалите уничтоженных роботов
 DELETE FROM Jaegers 
  WHERE status = 'Destroyed';
-
-
